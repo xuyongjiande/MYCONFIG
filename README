@@ -1,0 +1,15 @@
+Some config files of xyj's Ubuntu
+===
+
+## Include
+
+.bashrc
+.fackrm
+.testbash.py
+.lxr_3.12.sh
+
+.gitconfig
+
+## install
+
+./setup.sh
