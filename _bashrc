@@ -152,3 +152,4 @@ alias sl='ls -CF'
 alias s='ls -CF'
 alias testbash='python ~/.testbash.py'
 alias Open=gnome-open
+alias du='du -h --max-depth=1'
