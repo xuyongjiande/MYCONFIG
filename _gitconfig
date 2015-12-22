@@ -1,22 +1,15 @@
 [user]
-	email = xuyongjiande@gmail.com
-	;email = yongjian.xu@outlook.com
+	email = yongjianchn@gmail.com
 	name = Yongjian Xu
 [alias]
-	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --
+	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
 	st = status
 	co = checkout
 [sendemail]
-	from = xuyongjiande@gmail.com
-	smtpuser = xuyongjiande@gmail.com
+	from = yongjianchn@gmail.com
+	smtpuser = yongjianchn@gmail.com
 	smtpserver = smtp.gmail.com
 	smtpserverport = 587
-	;
-	;from = yongjian.xu@outlook.com
-	;smtpuser = yongjian.xu@outlook.com
-	;smtpserver = smtp-mail.outlook.com
-	;smtpserverport = 25
-	;
 	smtpencryption = tls
 [color]
 	ui = true

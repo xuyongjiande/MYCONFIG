@@ -81,7 +81,7 @@ PROMPT_COMMAND="show_branch"
 
 # Do not use rm
 alias rm='fun() { 
-	newDir=~/.rm/`date +%Y.%m.%d.%H:%M:%S`
+	newDir=~/work/.rm/`date +%Y.%m.%d.%H:%M:%S`
 	[ -d $newDir ] || mkdir -p $newDir
 	mv "$@" $newDir
 	}

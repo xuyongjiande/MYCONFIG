@@ -4,6 +4,7 @@ set ignorecase
 set nocompatible
 set number
 set history=1000
+set fileencodings=utf-8,gbk,utf-16
 
 " 解决HOME END键失效的问题
 map <esc>OH <home>
@@ -26,26 +27,24 @@ map <A-Right> <C-W>l
 " Tab
 set list
 set lcs=tab:\|\ 
-set tabstop=8
-set shiftwidth=8
-set softtabstop=8
+set expandtab
+set tabstop=4
+set shiftwidth=4
+set softtabstop=4
 
 " Using cscope easily
 if has ("cscope")
 	set cscopetag
 	set csto=0
-	if filereadable("cscope.out")
-		cs add cscope.out
-	elseif $CSCOPE_DB != ""
-		cs add $CSCOPE_DB
-	endif
+	set csverb
+	set cscopequickfix=
 	nmap cs :cs find s <C-R>=expand("<cword>")<CR><CR>
 	nmap cg :cs find g <C-R>=expand("<cword>")<CR><CR>
 	nmap cc :cs find c <C-R>=expand("<cword>")<CR><CR>
 	nmap ct :cs find t <C-R>=expand("<cword>")<CR><CR>
 	nmap ce :cs find e <C-R>=expand("<cword>")<CR><CR>
 	nmap cf :cs find f <C-R>=expand("<cfile>")<CR><CR>
-	nmap ci :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
+	nmap ci :cs find i <C-R>=expand("<cfile>")<CR><CR>
 	nmap cd :cs find d <C-R>=expand("<cword>")<CR><CR>
 endif
 
