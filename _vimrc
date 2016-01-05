@@ -129,7 +129,7 @@ nmap <F5> :NERDTreeToggle<cr>
 let Tlist_Show_One_File=1
 let Tlist_Exit_OnlyWindow=1
 nmap tl :Tlist<cr>
-let g:winManagerWidth = 30
+let g:winManagerWidth = 50
 let g:winManagerWindowLayout='FileExplorer|TagList'
 nmap wm :WMToggle<cr>
 
