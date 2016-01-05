@@ -3,8 +3,14 @@ set noswapfile
 set ignorecase
 set nocompatible
 set number
+set numberwidth=5
 set history=1000
-set fileencodings=utf-8,gbk,utf-16
+set fileencodings=utf-8,bg18030,gbk,utf-16,big5
+
+" color
+syntax enable
+syntax on
+colorscheme desert
 
 " 解决HOME END键失效的问题
 map <esc>OH <home>
@@ -18,7 +24,7 @@ cmap <esc>OF <end>
 set statusline=%<[%n]\%F\ %h%m%r%=%k[%{(&fenc==\"\")?&enc:&fenc}%{(&bomb?\",BOM\":\"\")}]<%{&ff}>[ASCII=\%03.3b]\ %-10.(%l,%c%V%)\ %P
 set laststatus=2
 
-" windows
+" switch windows
 map <A-Down> <C-W>j
 map <A-Up> <C-W>k
 map <A-Left> <C-W>h
@@ -57,11 +63,6 @@ augroup filetype
 au! BufRead,BufNewFile *.td     set filetype=tablegen
 augroup END
 
-" color
-syntax enable
-syntax on
-colorscheme desert
-
 " =====================================
 " 自动添加文件描述
 " =====================================
@@ -69,7 +70,7 @@ function AddTitle()
 	call setline(1,"/*")
 	call append(1,"* Filename: " . expand("%"))
 	call append(2,"* " . "Last modified: " . strftime("%Y-%m-%d %H:%M"))
-	call append(3,"* Author: Yongjian Xu -- xuyongjiande@gmail.com")
+	call append(3,"* Author: Yongjian Xu -- yongjianchn@gmail.com")
 	call append(4,"* Description: ")
 	call append(5,"*/")
 endf
@@ -79,7 +80,7 @@ function AddTitle2()
 	call append(1,"#-*- coding: utf-8 -*-")
 	call append(2,"#Filename: " . expand("%"))
 	call append(3,"#" . "Last modified: " . strftime("%Y-%m-%d %H:%M"))
-	call append(4,"#Author: Yongjian Xu -- xuyongjiande@gmail.com")
+	call append(4,"#Author: Yongjian Xu -- yongjianchn@gmail.com")
 	call append(5,"#Description: ")
 endf
 map myp :call AddTitle2():$o
@@ -87,7 +88,7 @@ function AddTitle1()
 	call setline(1,"#!/bin/bash")
 	call append(1,"#Filename: " . expand("%"))
 	call append(2,"#" . "Last modified: " . strftime("%Y-%m-%d %H:%M"))
-	call append(3,"#Author: Yongjian Xu -- xuyongjiande@gmail.com")
+	call append(3,"#Author: Yongjian Xu -- yongjianchn@gmail.com")
 	call append(4,"#Description: ")
 endf
 map mys :call AddTitle1():$o
@@ -105,91 +106,6 @@ let @g='a\033[32;49;1m'
 let @y='a\033[33;49;1m'
 let @n='a\033[39;49;0m'
 
-" =====================================
-" OneKey to compile or run:
-" c\cpp\java\python
-" =====================================
-""F5一键编译单源文件，F6一键运行
-func! CompileGcc()
-    exec "w"
-    let compilecmd="!gcc "
-    let compileflag="-o %< "
-    if search("mpi\.h") != 0
-        let compilecmd = "!mpicc "
-    endif
-    if search("glut\.h") != 0
-        let compileflag .= " -lglut -lGLU -lGL "
-    endif
-    if search("cv\.h") != 0
-        let compileflag .= " -lcv -lhighgui -lcvaux "
-    endif
-    if search("omp\.h") != 0
-        let compileflag .= " -fopenmp "
-    endif
-    if search("math\.h") != 0
-        let compileflag .= " -lm "
-    endif
-    exec compilecmd." % ".compileflag
-endfunc
-func! CompileGpp()
-    exec "w"
-    let compilecmd="!g++ "
-    let compileflag="-o %< "
-    if search("mpi\.h") != 0
-        let compilecmd = "!mpic++ "
-    endif
-    if search("glut\.h") != 0
-        let compileflag .= " -lglut -lGLU -lGL "
-    endif
-    if search("cv\.h") != 0
-        let compileflag .= " -lcv -lhighgui -lcvaux "
-    endif
-    if search("omp\.h") != 0
-        let compileflag .= " -fopenmp "
-    endif
-    if search("math\.h") != 0
-        let compileflag .= " -lm "
-    endif
-    exec compilecmd." % ".compileflag
-endfunc
-func! RunPython()
-        exec "!python %"
-endfunc
-func! CompileJava()
-    exec "!javac %"
-endfunc
-func! CompileCode()
-        exec "w"
-        if &filetype == "cpp"
-                exec "call CompileGpp()"
-        elseif &filetype == "c"
-                exec "call CompileGcc()"
-        elseif &filetype == "python"
-                exec "call RunPython()"
-        elseif &filetype == "java"
-                exec "call CompileJava()"
-        endif
-endfunc
-func! RunResult()
-        exec "w"
-        if search("mpi\.h") != 0
-            exec "!mpirun -np 4 ./%<"
-        elseif &filetype == "cpp"
-            exec "! ./%<"
-        elseif &filetype == "c"
-            exec "! ./%<"
-        elseif &filetype == "python"
-            exec "call RunPython"
-        elseif &filetype == "java"
-            exec "!java %<"
-        endif
-endfunc
-map <F5> :call CompileCode()<CR>
-imap <F5> <ESC>:call CompileCode()<CR>
-vmap <F5> <ESC>:call CompileCode()<CR>
-map <F6> :call RunResult()<CR>
-
-
 " ====================
 " Plugin
 " ====================
@@ -205,15 +121,16 @@ endfunction
 function! NERDTree_IsValid()
 	return 1
 endfunction
+nmap <F5> :NERDTreeToggle<cr>
 
 " ----------
 " WindowsManager
 " ----------
 let Tlist_Show_One_File=1
 let Tlist_Exit_OnlyWindow=1
+nmap tl :Tlist<cr>
 let g:winManagerWidth = 30
 let g:winManagerWindowLayout='FileExplorer|TagList'
-let g:winManagerWindowLayout='NERDTree|TagList'
 nmap wm :WMToggle<cr>
 
 " ----------
