@@ -15,8 +15,8 @@ shopt -s histappend
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
 # HISTSIZE=1000
 # HISTFILESIZE=2000
-export HISTFILESIZE=
-export HISTSIZE=
+export HISTFILESIZE=999999999
+export HISTSIZE=88888888
 export HISTTIMEFORMAT="[%F %T] "
 # Change the file location because certain bash sessions truncate .bash_history file upon close.
 # export HISTFILE=~/.bash_eternal_history
@@ -50,6 +50,7 @@ fi
 alias ll='ls -alFh'
 alias la='ls -A'
 alias l='ls -CF'
+alias vi='vim'
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
@@ -84,8 +85,7 @@ alias rm='fun() {
 	newDir=~/work/.rm/`date +%Y.%m.%d.%H:%M:%S`
 	[ -d $newDir ] || mkdir -p $newDir
 	mv "$@" $newDir
-	}
-	fun '
+	}; fun '
 
 # Show tips if $? != 0
 show_ret() {
@@ -106,3 +106,5 @@ alias s='ls -CF'
 alias testbash='python ~/.testbash.py'
 alias Open=gnome-open
 alias du='du -h --max-depth=1'
+alias cs='cscope -Rbq'
+alias c='clear'

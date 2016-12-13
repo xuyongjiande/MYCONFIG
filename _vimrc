@@ -54,15 +54,6 @@ if has ("cscope")
 	nmap cd :cs find d <C-R>=expand("<cword>")<CR><CR>
 endif
 
-" Syntax
-augroup filetype
-au! BufRead,BufNewFile *.ll     set filetype=llvm
-augroup END
-
-augroup filetype
-au! BufRead,BufNewFile *.td     set filetype=tablegen
-augroup END
-
 " =====================================
 " 自动添加文件描述
 " =====================================
@@ -106,9 +97,44 @@ let @g='a\033[32;49;1m'
 let @y='a\033[33;49;1m'
 let @n='a\033[39;49;0m'
 
-" ====================
-" Plugin
-" ====================
+
+" vundle 环境设置
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+Plugin 'VundleVim/Vundle.vim'
+Plugin 'altercation/vim-colors-solarized'
+"Plugin 'tomasr/molokai'
+"Plugin 'vim-scripts/phd'
+"Plugin 'Lokaltog/vim-powerline'
+Plugin 'octol/vim-cpp-enhanced-highlight'
+"Plugin 'nathanaelkane/vim-indent-guides'
+Plugin 'derekwyatt/vim-fswitch'
+"Plugin 'kshenoy/vim-signature'
+"Plugin 'vim-scripts/BOOKMARKS--Mark-and-Highlight-Full-Lines'
+"Plugin 'majutsushi/tagbar'
+"Plugin 'vim-scripts/indexer.tar.gz'
+"Plugin 'vim-scripts/DfrankUtil'
+"Plugin 'vim-scripts/vimprj'
+"Plugin 'dyng/ctrlsf.vim'
+"Plugin 'terryma/vim-multiple-cursors'
+Plugin 'scrooloose/nerdcommenter'
+"Plugin 'vim-scripts/DrawIt'
+"Plugin 'SirVer/ultisnips'
+"Plugin 'Valloric/YouCompleteMe'
+"Plugin 'derekwyatt/vim-protodef'
+Plugin 'scrooloose/nerdtree'
+"Plugin 'fholgado/minibufexpl.vim'
+"Plugin 'gcmt/wildfire.vim'
+"Plugin 'sjl/gundo.vim'
+"Plugin 'Lokaltog/vim-easymotion'
+"Plugin 'suan/vim-instant-markdown'
+"Plugin 'lilydjwg/fcitx.vim'
+"Plugin 'nathanaelkane/vim-indent-guides'
+Plugin 'ervandew/supertab'
+Plugin 'vim-scripts/taglist.vim'
+Plugin 'vim-scripts/winmanager'
+" 插件列表结束
+call vundle#end()
 
 " ----------
 " NERDTree
@@ -129,7 +155,7 @@ nmap <F5> :NERDTreeToggle<cr>
 let Tlist_Show_One_File=1
 let Tlist_Exit_OnlyWindow=1
 nmap tl :Tlist<cr>
-let g:winManagerWidth = 30
+let g:winManagerWidth = 36
 let g:winManagerWindowLayout='FileExplorer|TagList'
 nmap wm :WMToggle<cr>
 
@@ -145,3 +171,8 @@ let g:SuperTabDefaultCompletionType="<C-X><C-O>"
 " NERD_Commenter
 " ----------
 let mapleader=","
+
+" ----------
+" vim-fswitch
+" ----------
+map fs :FSHere<cr>
