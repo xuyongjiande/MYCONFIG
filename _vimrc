@@ -38,6 +38,13 @@ set tabstop=4
 set shiftwidth=4
 set softtabstop=4
 
+" 自动添加配对符号
+inoremap ( ()<LEFT>
+inoremap { {}<LEFT>
+inoremap [ []<LEFT>
+inoremap " ""<LEFT>
+inoremap ' ''<LEFT>
+
 " Using cscope easily
 if has ("cscope")
 	set cscopetag
