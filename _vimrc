@@ -55,36 +55,6 @@ if has ("cscope")
 endif
 
 " =====================================
-" 自动添加文件描述
-" =====================================
-function AddTitle()
-	call setline(1,"/*")
-	call append(1,"* Filename: " . expand("%"))
-	call append(2,"* " . "Last modified: " . strftime("%Y-%m-%d %H:%M"))
-	call append(3,"* Author: Yongjian Xu -- yongjianchn@gmail.com")
-	call append(4,"* Description: ")
-	call append(5,"*/")
-endf
-map myc :call AddTitle():$o
-function AddTitle2()
-	call setline(1,"#!/usr/bin/env python")
-	call append(1,"#-*- coding: utf-8 -*-")
-	call append(2,"#Filename: " . expand("%"))
-	call append(3,"#" . "Last modified: " . strftime("%Y-%m-%d %H:%M"))
-	call append(4,"#Author: Yongjian Xu -- yongjianchn@gmail.com")
-	call append(5,"#Description: ")
-endf
-map myp :call AddTitle2():$o
-function AddTitle1()
-	call setline(1,"#!/bin/bash")
-	call append(1,"#Filename: " . expand("%"))
-	call append(2,"#" . "Last modified: " . strftime("%Y-%m-%d %H:%M"))
-	call append(3,"#Author: Yongjian Xu -- yongjianchn@gmail.com")
-	call append(4,"#Description: ")
-endf
-map mys :call AddTitle1():$o
-
-" =====================================
 " 方便使用shell的颜色
 " Format: \033[${define}${foreground};${background};${effect}m
 " foreGround (3x)
