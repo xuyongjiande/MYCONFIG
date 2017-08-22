@@ -1,11 +1,12 @@
 " Common
 set noswapfile
 set ignorecase
+set smartcase
 set nocompatible
 set number
 set numberwidth=5
 set history=1000
-set fileencodings=utf-8,bg18030,gbk,utf-16,big5
+set fileencodings=iso-8859-1,utf-8,bg18030,gbk,utf-16,big5
 
 " color
 syntax enable
