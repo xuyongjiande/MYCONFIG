@@ -3,8 +3,8 @@
 	name = Yongjian Xu
 [alias]
 	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %C(bold blue)<%an>%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit
-	st = status
-	co = checkout
+    co = checkout
+    st = status
 [sendemail]
 	from = yongjianchn@gmail.com
 	smtpuser = yongjianchn@gmail.com
@@ -16,3 +16,5 @@
 [core]
 	editor = vim
 	whitespace = cr-at-eol
+[push]
+	default = tracking
