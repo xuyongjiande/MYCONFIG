@@ -39,6 +39,13 @@ set tabstop=4
 set shiftwidth=4
 set softtabstop=4
 
+" 自动添加配对符号
+inoremap ( ()<LEFT>
+inoremap { {}<LEFT>
+inoremap [ []<LEFT>
+inoremap " ""<LEFT>
+inoremap ' ''<LEFT>
+
 " Using cscope easily
 if has ("cscope")
 	set cscopetag
@@ -54,36 +61,6 @@ if has ("cscope")
 	nmap ci :cs find i <C-R>=expand("<cfile>")<CR><CR>
 	nmap cd :cs find d <C-R>=expand("<cword>")<CR><CR>
 endif
-
-" =====================================
-" 自动添加文件描述
-" =====================================
-function AddTitle()
-	call setline(1,"/*")
-	call append(1,"* Filename: " . expand("%"))
-	call append(2,"* " . "Last modified: " . strftime("%Y-%m-%d %H:%M"))
-	call append(3,"* Author: Yongjian Xu -- yongjianchn@gmail.com")
-	call append(4,"* Description: ")
-	call append(5,"*/")
-endf
-map myc :call AddTitle():$o
-function AddTitle2()
-	call setline(1,"#!/usr/bin/env python")
-	call append(1,"#-*- coding: utf-8 -*-")
-	call append(2,"#Filename: " . expand("%"))
-	call append(3,"#" . "Last modified: " . strftime("%Y-%m-%d %H:%M"))
-	call append(4,"#Author: Yongjian Xu -- yongjianchn@gmail.com")
-	call append(5,"#Description: ")
-endf
-map myp :call AddTitle2():$o
-function AddTitle1()
-	call setline(1,"#!/bin/bash")
-	call append(1,"#Filename: " . expand("%"))
-	call append(2,"#" . "Last modified: " . strftime("%Y-%m-%d %H:%M"))
-	call append(3,"#Author: Yongjian Xu -- yongjianchn@gmail.com")
-	call append(4,"#Description: ")
-endf
-map mys :call AddTitle1():$o
 
 " =====================================
 " 方便使用shell的颜色
