@@ -17,4 +17,4 @@
 	editor = vim
 	whitespace = cr-at-eol
 [push]
-	default = tracking
+	default = current

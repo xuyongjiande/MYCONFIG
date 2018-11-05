@@ -6,7 +6,9 @@ set nocompatible
 set number
 set numberwidth=5
 set history=1000
-set fileencodings=iso-8859-1,utf-8,bg18030,gbk,utf-16,big5
+"set encoding=utf-8
+set fileencodings=ucs-bom,gb2312,utf-8,utf-16,gb18030,gbk,iso-8859,iso-8859-1,big5,cp936,latin1
+
 
 " color
 syntax enable
@@ -35,16 +37,17 @@ map <A-Right> <C-W>l
 set list
 set lcs=tab:\|\ 
 set expandtab
+" set noexpandtab
 set tabstop=4
 set shiftwidth=4
 set softtabstop=4
 
 " 自动添加配对符号
-inoremap ( ()<LEFT>
-inoremap { {}<LEFT>
-inoremap [ []<LEFT>
-inoremap " ""<LEFT>
-inoremap ' ''<LEFT>
+"inoremap ( ()<LEFT>
+"inoremap { {}<LEFT>
+"inoremap [ []<LEFT>
+"inoremap " ""<LEFT>
+"inoremap ' ''<LEFT>
 
 " Using cscope easily
 if has ("cscope")

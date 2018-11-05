@@ -1,3 +1,10 @@
+export PATH="/software-xyj/bin:/software-xyj/sbin:$PATH"
+export JAVA_HOME=/install-xyj/jdk1.8.0_141
+
+
+
+
+
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
@@ -65,18 +72,18 @@ fi
 
 # show git branch
 parse_git_branch() {
-git branch 2> /dev/null |sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
+git branch 2> /dev/null |sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'
 }
 git_info() {
 if [ -n "$(parse_git_branch)" ]; then
 	info=$(parse_git_branch);
-	echo "[branch: $info]";
+	echo "[$info] ";
 fi
 }
 OLDPS1=$PS1
 show_branch() {
 PS1=$OLDPS1
-PS1="${PS1}\[\033[0;32m\]$(git_info)\[\033[00m\]\n"
+PS1="${PS1}\[\033[0;32m\]$(git_info)\[\033[00m\]"
 }
 PROMPT_COMMAND="show_branch"
 
@@ -84,7 +91,7 @@ PROMPT_COMMAND="show_branch"
 alias rm='fun() { 
 	newDir=~/work/.rm/`date +%Y.%m.%d.%H:%M:%S`
 	[ -d $newDir ] || mkdir -p $newDir
-	mv "$@" $newDir
+	sudo mv "$@" $newDir
 	}; fun '
 
 # Show tips if $? != 0
@@ -100,11 +107,29 @@ PROMPT_COMMAND="show_ret; $PROMPT_COMMAND"
 if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
-alias ta='tmux attach'
+alias ta='tmux attach -t work || tmux new -s work'
+alias tb='tmux attach -t work2 || tmux new -s work2'
 alias sl='ls -CF'
 alias s='ls -CF'
 alias testbash='python ~/.testbash.py'
 alias Open=gnome-open
-alias du='du -h --max-depth=1'
-alias cs='cscope -Rbq'
+alias du='du -h'
+# alias cs='cscope -Rbq'
+alias cs='find -regex ".*\.\(c\|h\|cpp\|cxx\|hh\|hpp\|hxx\|cc\)$" | cscope -i- -b -q'
 alias c='clear'
+alias curla="curl -H 'Proxy-Authorization: EDGE 2147483646:d5NCq9Pm15'"
+alias mycurl="curl -svo /dev/null "
+alias cc="grep -E 'inet_ntoa|inet_addr|inet_aton|gethostby|sockaddr_in|inet_makeaddr|inet_netof|inet_lnaof|inet_network|getservby|AF_INET' -r "
+#export PATH=/opt/rh/devtoolset-3/root/usr/bin:$PATH
+
+alias undelay='fun()
+    {
+        save=`cat /tmp/tcdelay.save`
+        sudo tc qdisc del dev lo root netem delay $save
+    }; fun'
+alias delay='fun()
+    {
+        undelay
+        sudo tc qdisc add dev lo root netem delay $1
+        echo $1 > /tmp/tcdelay.save
+    }; fun'
