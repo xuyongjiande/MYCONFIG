@@ -1,4 +1,4 @@
-export PATH="/software-xyj/bin:/software-xyj/sbin:$PATH"
+export PATH="/install-xyj/bin:/software-xyj/sbin:$PATH"
 export JAVA_HOME=/install-xyj/jdk1.8.0_141
 
 
@@ -92,6 +92,7 @@ alias rm='fun() {
 	newDir=~/work/.rm/`date +%Y.%m.%d.%H:%M:%S`
 	[ -d $newDir ] || mkdir -p $newDir
 	sudo mv "$@" $newDir
+	echo "$newDir"
 	}; fun '
 
 # Show tips if $? != 0

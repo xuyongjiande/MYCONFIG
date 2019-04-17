@@ -6,8 +6,11 @@ set nocompatible
 set number
 set numberwidth=5
 set history=1000
-"set encoding=utf-8
-set fileencodings=ucs-bom,gb2312,utf-8,utf-16,gb18030,gbk,iso-8859,iso-8859-1,big5,cp936,latin1
+set encoding=utf-8
+"set fileencodings=ucs-bom,gb2312,utf-8,utf-16,gb18030,gbk,iso-8859,iso-8859-1,big5,cp936,latin1
+set fileencodings=ucs-bom,utf-8,gb2312,utf-16,gb18030,gbk,iso-8859,iso-8859-1,big5,cp936,latin1
+set fileencoding=utf-8
+set termencoding=utf-8
 
 
 " color
