@@ -1,9 +1,5 @@
-export PATH="/install-xyj/bin:/software-xyj/sbin:$PATH"
+export PATH="$HOME/myinstall/bin:$PATH"
 export JAVA_HOME=/install-xyj/jdk1.8.0_141
-
-
-
-
 
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
@@ -116,7 +112,7 @@ alias testbash='python ~/.testbash.py'
 alias Open=gnome-open
 alias du='du -h'
 # alias cs='cscope -Rbq'
-alias cs='find -regex ".*\.\(c\|h\|cpp\|cxx\|hh\|hpp\|hxx\|cc\)$" | cscope -i- -b -q'
+alias cs='find -regex ".*\.\(c\|h\|in\|cpp\|cxx\|hh\|hpp\|hxx\|cc\)$" | cscope -i- -b -q'
 alias c='clear'
 alias curla="curl -H 'Proxy-Authorization: EDGE 2147483646:d5NCq9Pm15'"
 alias mycurl="curl -svo /dev/null "
@@ -125,12 +121,12 @@ alias cc="grep -E 'inet_ntoa|inet_addr|inet_aton|gethostby|sockaddr_in|inet_make
 
 alias undelay='fun()
     {
-        save=`cat /tmp/tcdelay.save`
-        sudo tc qdisc del dev lo root netem delay $save
+        save=`cat /tmp/tcdelay.save.$1`
+        sudo tc qdisc del dev $1 root netem delay $save
     }; fun'
 alias delay='fun()
     {
-        undelay
-        sudo tc qdisc add dev lo root netem delay $1
-        echo $1 > /tmp/tcdelay.save
+        undelay $1
+        sudo tc qdisc add dev $1 root netem delay $2
+        echo $2 > /tmp/tcdelay.save.$1
     }; fun'
