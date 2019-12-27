@@ -1,4 +1,5 @@
-export PATH="$HOME/myinstall/bin:$PATH"
+export GOPATH=~/go
+export PATH="$HOME/myinstall/bin:$HOME/go/bin:$PATH"
 export JAVA_HOME=/install-xyj/jdk1.8.0_141
 
 # ~/.bashrc: executed by bash(1) for non-login shells.
@@ -112,7 +113,7 @@ alias testbash='python ~/.testbash.py'
 alias Open=gnome-open
 alias du='du -h'
 # alias cs='cscope -Rbq'
-alias cs='find -regex ".*\.\(c\|h\|in\|cpp\|cxx\|hh\|hpp\|hxx\|cc\)$" | cscope -i- -b -q'
+alias cs='find -regex ".*\.\(xml\|xml.default\|c\|h\|in\|cpp\|cxx\|hh\|hpp\|hxx\|cc\)$" | cscope -i- -b -q'
 alias c='clear'
 alias curla="curl -H 'Proxy-Authorization: EDGE 2147483646:d5NCq9Pm15'"
 alias mycurl="curl -svo /dev/null "
