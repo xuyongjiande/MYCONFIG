@@ -120,6 +120,10 @@ Plugin 'vim-scripts/winmanager'
 " 插件列表结束
 call vundle#end()
 
+call plug#begin()
+Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
+call plug#end()
+
 " ----------
 " NERDTree
 " ----------

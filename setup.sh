@@ -30,4 +30,5 @@ backup ~/.vim ~/.vimrc
 env rm -r ~/.vim ~/.vimrc
 ln -s $(pwd)/_vim ~/.vim
 ln -s $(pwd)/_vimrc ~/.vimrc
+curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 git clone https://github.com/fatih/vim-go.git ~/.vim/pack/plugins/start/vim-go
