@@ -91,7 +91,6 @@ let @y='a\033[33;49;1m'
 let @n='a\033[39;49;0m'
 
 
-
 " xyj
 " 插件开始的位置
 call plug#begin('~/.vim/plugged')
@@ -119,15 +118,10 @@ Plug 'majutsushi/tagbar'
 Plug 'jiangmiao/auto-pairs'
 " Vim状态栏插件，包括显示行号，列号，文件类型，文件名，以及Git状态
 Plug 'vim-airline/vim-airline'
-" 有道词典在线翻译
-Plug 'ianva/vim-youdao-translater'
 " 代码自动完成，安装完插件还需要额外配置才可以使用
 "Plug 'Valloric/YouCompleteMe'
 " 可以在文档中显示 git 信息
 Plug 'airblade/vim-gitgutter'
-" 下面两个插件要配合使用，可以自动生成代码块
-Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
 " 配色方案
 " colorscheme gruvbox
 Plug 'morhetz/gruvbox'
@@ -138,9 +132,6 @@ Plug 'altercation/vim-colors-solarized'
 Plug 'fatih/vim-go', { 'tag': '*' }
 " go 中的代码追踪，输入 gd 就可以自动跳转
 Plug 'dgryski/vim-godef'
-" markdown 插件
-Plug 'iamcco/mathjax-support-for-mkdp'
-Plug 'iamcco/markdown-preview.vim'
 " 自动生成注释的插件
 Plug 'scrooloose/nerdcommenter'
 " 强大的文件搜索插件
@@ -290,32 +281,8 @@ let g:NERDTreeGitStatusShowIgnoredStatus = 1
 nmap <Leader>pwd :NERDTreeCWD<CR>
 
 "==============================================================================
-"  Valloric/YouCompleteMe 插件
-"==============================================================================
-
-" make YCM compatible with UltiSnips (using supertab)
-let g:ycm_key_list_select_completion = ['<M-j>', '<DOWN>']
-let g:ycm_key_list_previous_completion = ['<M-k>', '<Up>']
-let g:SuperTabDefaultCompletionType = '<M-j>'
-
-" 关闭了提示再次触发的快捷键
-let g:ycm_key_invoke_completion = '<Leader>,'
-
-"==============================================================================
-" UltiSnips 插件
-"==============================================================================
-" better key bindings for UltiSnipsExpandTrigger
-let g:UltiSnipsExpandTrigger = "<tab>"
-let g:UltiSnipsJumpForwardTrigger = "<tab>"
-let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
-
-"==============================================================================
 "  其他插件配置
 "==============================================================================
-
-" markdwon 的快捷键
-map <silent> <F5> <Plug>MarkdownPreview
-map <silent> <F6> <Plug>StopMarkdownPreview
 
 " tab 标签页切换快捷键
 :nn <Leader>1 1gt
@@ -344,21 +311,6 @@ map <silent> <F6> <Plug>StopMarkdownPreview
 let g:NERDSpaceDelims=1
 
 "==============================================================================
-" 光标随着插入模式改变形状
-" 参考： https://vim.fandom.com/wiki/Change_cursor_shape_in_different_modes
-"==============================================================================
-if has("autocmd")
-	au VimEnter,InsertLeave * silent execute '!echo -ne "\e[2 q"' | redraw!
-	au InsertEnter,InsertChange *
-				\ if v:insertmode == 'i' |
-				\   silent execute '!echo -ne "\e[6 q"' | redraw! |
-				\ elseif v:insertmode == 'r' |
-				\   silent execute '!echo -ne "\e[4 q"' | redraw! |
-				\ endif
-endif
-
-
-"==============================================================================
 " 自定义的额外配置 
 "==============================================================================
 "
@@ -367,11 +319,5 @@ endif
 " 加载 session 的快捷键
 "nmap <Leader>his :source ~/.vim/session.vim<CR>
 
-nnoremap <silent> <C-p> :Files<CR>
-nnoremap <silent> <C-S-i> :Autoformat<CR>
-
-" 有道词典插件
-map <M-t> :Ydc<CR>
-
-" 自动切换到当前文件所在的目录 cdpath
-map <Leader>cd :cd %:h<CR>
+"nnoremap <silent> <C-p> :Files<CR>
+"nnoremap <silent> <C-S-i> :Autoformat<CR>
