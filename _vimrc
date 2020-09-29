@@ -4,7 +4,7 @@ set smartcase
 set nocompatible
 set number " 设置绝对行号
 "set relativenumber " 设置相对行号
-set cursorline "突出显示当前行
+"set cursorline "突出显示当前行
 " set cursorcolumn " 突出显示当前列
 set showmatch " 显示括号匹配
 
@@ -117,7 +117,7 @@ Plug 'majutsushi/tagbar'
 " 自动补全括号的插件，包括小括号，中括号，以及花括号
 Plug 'jiangmiao/auto-pairs'
 " Vim状态栏插件，包括显示行号，列号，文件类型，文件名，以及Git状态
-Plug 'vim-airline/vim-airline'
+"Plug 'vim-airline/vim-airline'
 " 代码自动完成，安装完插件还需要额外配置才可以使用
 "Plug 'Valloric/YouCompleteMe'
 " 可以在文档中显示 git 信息
@@ -130,8 +130,6 @@ Plug 'rakr/vim-one'
 Plug 'altercation/vim-colors-solarized'
 " go 主要插件
 Plug 'fatih/vim-go', { 'tag': '*' }
-" go 中的代码追踪，输入 gd 就可以自动跳转
-Plug 'dgryski/vim-godef'
 " 自动生成注释的插件
 Plug 'scrooloose/nerdcommenter'
 " 强大的文件搜索插件
@@ -171,10 +169,14 @@ colorscheme desert
 "colorscheme gruvbox " 主题
 "set background=light " 主题背景 dark-深色; light-浅色
 
-
 "==============================================================================
 " vim-go 插件
 "==============================================================================
+nmap gd :GoDef <CR>
+nmap gi :GoImplements <CR>
+nmap gc :GoCallees <CR>
+nmap gr :GoReferrers <CR>
+
 let g:go_fmt_command = "goimports" " 格式化将默认的 gofmt 替换
 let g:go_autodetect_gopath = 1
 let g:go_list_type = "quickfix"
