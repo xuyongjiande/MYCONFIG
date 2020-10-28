@@ -62,6 +62,7 @@ set autoindent " 继承前一行的缩进方式，适用于多行注释
 "inoremap ' ''<LEFT>
 
 " Using cscope easily
+source ~/.vim/nowarn.vim
 if has ("cscope")
 	set cscopetag
 	set csto=0
