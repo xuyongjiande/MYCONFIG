@@ -1,9 +1,11 @@
+alias sudo='sudo env PATH=$PATH'
 export GOPATH=~/work/go
 # Enable the go modules feature
 #export GO111MODULE=on
 # Set the GOPROXY environment variable
-export GOPROXY=https://goproxy.io,direct
-export PATH="$HOME/myinstall/bin:$HOME/go/bin:$PATH"
+#export GOPROXY=https://goproxy.io,direct
+export GOPROXY=https://proxy.golang.com.cn,direct
+export PATH="$HOME/myinstall/bin:$HOME/go/bin:$HOME/work/go/bin:/opt/intel/oneapi/vtune/latest/bin64/:$PATH"
 export JAVA_HOME=/install-xyj/jdk1.8.0_141
 
 # ~/.bashrc: executed by bash(1) for non-login shells.
@@ -132,6 +134,8 @@ alias undelay='fun()
 alias delay='fun()
     {
         undelay $1
-        sudo tc qdisc add dev $1 root netem delay $2
-        echo $2 > /tmp/tcdelay.save.$1
+        sudo tc qdisc add dev $1 root netem delay $2 $3
+        echo $2 $3 > /tmp/tcdelay.save.$1
     }; fun'
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
